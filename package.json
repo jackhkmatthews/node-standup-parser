@@ -1,0 +1,20 @@
+{
+  "name": "standup-parser",
+  "version": "0.0.0",
+  "description": "Node class for parsing SOON_s standup text files",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "SOON_ <dorks@thisissoon.com> (http://thisissoon.com)",
+  "license": "UNLICENSED"
+}
