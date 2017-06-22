@@ -42,4 +42,8 @@ describe('getFormationNames', function() {
     expect(getFormationNames(inputString).length).to.equal(10);
     expect(getFormationNames(inputString)).to.deep.equal(outputArray);
   });
+
+  it('should handle more than one formation', function() {
+    
+  })
 });
