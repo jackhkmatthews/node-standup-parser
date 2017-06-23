@@ -1,24 +1,28 @@
-const expect = require('chai').expect;
+const chai = require('chai');
+const expect = chai.expect;
+const chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
+
 const StandupParser = require('../lib/standup-parser.js').StandupParser;
 const standupParser = new StandupParser;
+const weekAsString = require('./week-as-string').weekAsString;
+const filePath = `${__dirname}/week.txt`;
 
 describe('standupParser', function() {
-  describe('standupParser.parse', function() {
+  describe('standupParser.getFile', function() {
+  
+    const result = standupParser.getFile(filePath);
 
     it('should return a promise', function(){
-      expect(standupParser.parse(`${__dirname}/week.txt`)).to.be.a('promise');
+      expect(result).to.be.a('promise');
     });
 
-    it('should return a string', function(done) {
+    it('should return a string', function() {
+      return expect(result).to.eventually.be.a('string');
+    });
 
-      //call the function we're testing
-      var result = standupParser.parse(`${__dirname}/week.txt`);
-
-      //assertions
-      result.then(data => {
-        expect(data).to.be.a('string');
-        done();
-      });
+    it('should return an exact string', function() {
+      return expect(result).to.eventually.equal(weekAsString);
     });
 
   });
