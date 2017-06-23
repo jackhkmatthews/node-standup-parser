@@ -8,4 +8,13 @@ const weekAsString = `11/04/2016: ken > alex > fred > ryan > greg > ed > chris >
 
 15/04/2016: ken > fred > ryan > vanda > ed > alex > chris > james > florence > greg > radek | alex > ed > vanda > ryan > fred > ken > radek > greg > florence > james > chris`;
 
+const formationsArray = [
+  ['ken', 'alex', 'fred', 'ryan', 'greg', 'ed', 'chris', 'radek', 'florence', 'vanda'],
+  ['ken', 'fred', 'alex', 'chris', 'ryan', 'ed', 'radek', 'james', 'vanda', 'florence', 'greg'], 
+  ['ken', 'vanda', 'james', 'ed', 'radek', 'chris', 'ryan', 'greg'], 
+  ['ken', 'fred', 'alex', 'ryan', 'chris', 'james', 'ed', 'radek', 'florence', 'vanda', 'greg'], 
+  ['ken', 'fred', 'ryan', 'vanda', 'ed', 'alex', 'chris', 'james', 'florence', 'greg', 'radek']
+];
+
 exports.weekAsString = weekAsString;
+exports.formationsArray = formationsArray;
