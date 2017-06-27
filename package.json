@@ -6,12 +6,10 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
+  "devDependencies": {
+    "mocha": "^2.4.5",
     "chai": "^3.5.0",
     "chai-as-promised": "^7.0.0"
-  },
-  "devDependencies": {
-    "mocha": "^2.4.5"
   },
   "scripts": {
     "test": "mocha"
