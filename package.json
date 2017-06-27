@@ -1,6 +1,6 @@
 {
   "name": "standup-parser",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Node class for parsing SOON_s standup text files",
   "main": "index.js",
   "directories": {
