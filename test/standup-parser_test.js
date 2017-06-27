@@ -223,6 +223,28 @@ describe('standupParser', function() {
       expect(result).to.be.an('array');
     });
 
+    it('return an array with elements with key value pairs', function() {
+      result.forEach(element => {
+        expect(element).to.have.property('date');
+        expect(element).to.have.property('formation');
+        expect(element).to.have.property('passes');
+      });
+    });
+
+  });
+
+  describe('standupParser.parse', function() {
+
+    const result = standupParser.parse(filePath);
+
+    it('should return a promise', function() {
+      expect(result).to.be.a('promise');
+    });
+
+    it('should eventually return an array', function() {
+      expect(result).to.eventually.be.an('array');
+    });
+
   });
 
 });
