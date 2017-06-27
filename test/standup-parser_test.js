@@ -197,11 +197,17 @@ describe('standupParser', function() {
       expect(result).to.be.an('object');
     });
 
-    it('should an object with .date = string', function(){
+    it('return an array with elements with key value pairs', function() {
+      expect(result).to.have.property('date');
+      expect(result).to.have.property('formation');
+      expect(result).to.have.property('passes');
+    });
+
+    it('should return an object with .date = string', function(){
       expect(result.date).to.be.a('string');
     });
 
-    it('should an object with .formation = array', function(){
+    it('should return an object with .formation = array', function(){
       expect(result.formation).to.be.a('array');
     });
 
@@ -221,14 +227,6 @@ describe('standupParser', function() {
 
     it('should return an array', function() {
       expect(result).to.be.an('array');
-    });
-
-    it('return an array with elements with key value pairs', function() {
-      result.forEach(element => {
-        expect(element).to.have.property('date');
-        expect(element).to.have.property('formation');
-        expect(element).to.have.property('passes');
-      });
     });
 
   });
