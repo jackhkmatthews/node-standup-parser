@@ -10,17 +10,17 @@ chai.use(chaiAsPromised);
 const StandupParser   = require('../lib/standup-parser.js').StandupParser;
 const standupParser   = new StandupParser;
 
-const filePath        = `${__dirname}/week.txt`;
-const weekAsString    = require('./week-as-string').weekAsString;
-const formationAsString    = require('./week-as-string').formationsAsStrings[0];
-const formationsAsStrings    = require('./week-as-string').formationsAsStrings;
-const orderAsStrings    = require('./week-as-string').ordersAsStrings[0];
-const ordersAsStrings    = require('./week-as-string').ordersAsStrings;
-const namesArray = require('./week-as-string').namesArray;
-const orderNamesArray = require('./week-as-string').orderNamesArray;
-const passesArray = require('./week-as-string').passesArray;
-const datesArray = require('./week-as-string').datesArray;
-const day = require('./week-as-string').day;
+const filePath               = `${__dirname}/week.txt`;
+const weekAsString           = require('./mock-data').weekAsString;
+const formationAsString      = require('./mock-data').formationsAsStrings[0];
+const formationsAsStrings    = require('./mock-data').formationsAsStrings;
+const orderAsStrings         = require('./mock-data').ordersAsStrings[0];
+const ordersAsStrings        = require('./mock-data').ordersAsStrings;
+const namesArray             = require('./mock-data').namesArray;
+const orderNamesArray        = require('./mock-data').orderNamesArray;
+const passesArray            = require('./mock-data').passesArray;
+const datesArray             = require('./mock-data').datesArray;
+const day                    = require('./mock-data').day;
 
 describe('standupParser', function() {
 
@@ -78,7 +78,7 @@ describe('standupParser', function() {
       expect(result.length).to.equal(5);
     });
 
-    it('should return an array of string which start with |', function(){
+    it('should return an array of strings which start with |', function(){
       result.forEach(element => {
         expect(element[0] === ':').to.be.true;
       });
@@ -215,9 +215,9 @@ describe('standupParser', function() {
 
   });
 
-  describe('standupParser.makeWeek', function() {
+  describe('standupParser.makeJSON', function() {
 
-    const result = standupParser.makeWeek(datesArray, namesArray, passesArray);
+    const result = standupParser.makeJSON(datesArray, namesArray, passesArray);
 
     it('should return an array', function() {
       expect(result).to.be.an('array');
