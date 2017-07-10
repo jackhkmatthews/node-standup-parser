@@ -179,12 +179,12 @@ describe('standupParser', function() {
       expect(result).to.be.an('array');
     });
 
-    it('should return an array with length equal to numeber of days', function() {
+    it('should return an array with length equal to number of days', function() {
       expect(result.length).to.equal(5);
     });
 
-    it('should return a specific array', function() {
-      expect(result).to.deep.equal(datesArray);
+    it('should return an array of dates', function() {
+      expect(result[0]).to.be.a('date');
     });
 
   });

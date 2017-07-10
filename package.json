@@ -15,5 +15,8 @@
     "test": "mocha"
   },
   "author": "SOON_ <dorks@thisissoon.com> (http://thisissoon.com)",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "moment": "^2.18.1"
+  }
 }
