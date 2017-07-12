@@ -23,7 +23,7 @@ Import the class in your code and instantiate it, call `.parse` with the `standu
 ```js
 const StandupParser  = require('standup-parser').StandupParser;
 const standupParser  = new StandupParser;
-standupParser.parse(inputFilePath))
+standupParser.parse(inputFilePath)
   .then(json => {
   	//do something with the JSON object
   	});
