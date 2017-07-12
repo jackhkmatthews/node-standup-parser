@@ -30,7 +30,7 @@ standupParser.parse(inputFilePath)
 
 ```
 
-### Input file
+### Input File
 
 The `standupParser.parse` method only works with the specific syntax and file type used by SOON_ to record standup formations (standing order) and passes (speaking order). The file type is `.txt` and the syntax is shown below.
 
@@ -40,7 +40,7 @@ The `standupParser.parse` method only works with the specific syntax and file ty
 02/03/2017: vanda > ryan > emma > chris > greg > ed > florence > ken > inga > fred > alex | greg > ryan > florence > inga > vanda > chris > ken > alex > emma > ed > fred
 ```
 
-### Output object
+### Output Object
 
 Given the above file the output object will be:
 
@@ -184,3 +184,9 @@ Given the above file the output object will be:
     }
  ]
 ```
+
+### Task List
+
+- [ ] Make the `passIndex` more meaningful.
+- [ ] Add some console feedback to the passing process.
+- [ ] Add error logging for imperfect data.
