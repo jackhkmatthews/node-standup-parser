@@ -8,13 +8,13 @@ ___
 
 A JavaScript class for parsing `standup.txt` files into JSON.
 
-This project was used as a learning tool for Behaviour Driven Development with Mocha and Chai (tests can be ran with `npm test`), istanbul and logging.
+This project was used as a learning tool for logging and Behaviour Driven Development with Mocha, Chai and istanbul (tests can be ran with `npm test`).
 
 This class is used within other projects where SOON_ standup data is required. For example projects which generate SVGs (as seen above) based on SOON_'s daily standups.
 
 ### Installation
 
-`node-standup-parser` can be installed as a node-module by adding `"standup-parser": "git://github.com/jackhkmatthews/node-standup-parser#v[VERSION_NUMBER]"` to the dependencies in you `package.json` file and running `npm install`.
+`node-standup-parser` can be installed as a node-module by adding `"standup-parser": "git://github.com/jackhkmatthews/node-standup-parser#v[VERSION_NUMBER]"` to the dependencies in your `package.json` file and running `npm install`.
 
 ### Usage
 
@@ -47,146 +47,65 @@ Given the above file the output object will be:
 ```
 [
     {
-        "date": "2017-03-01T00:00:00.000Z",
-        "formation": [
+        "date": "2016-04-10T23:00:00.000Z",
+        "positions": [
             "ken",
-            "florence",
-            "james",
-            "emma",
+            "alex",
             "fred",
+            "ryan",
+            "greg",
+            "ed",
+            "chris",
+            "radek",
+            "florence",
+            "vanda"
+        ],
+        "summaries": [
+            "alex",
+            "ed",
+            "florence",
             "vanda",
             "ryan",
+            "greg",
+            "ken",
             "chris",
-            "ed",
-            "inga",
-            "alex"
-        ],
-        "passes": [
-            {
-                "passIndex": 0,
-                "from": "alex",
-                "to": "ed"
-            },
-            {
-                "passIndex": 1,
-                "from": "ed",
-                "to": "fred"
-            },
-            {
-                "passIndex": 2,
-                "from": "fred",
-                "to": "ken"
-            },
-            {
-                "passIndex": 3,
-                "from": "ken",
-                "to": "florence"
-            },
-            {
-                "passIndex": 4,
-                "from": "florence",
-                "to": "emma"
-            },
-            {
-                "passIndex": 5,
-                "from": "emma",
-                "to": "chris"
-            },
-            {
-                "passIndex": 6,
-                "from": "chris",
-                "to": "ryan"
-            },
-            {
-                "passIndex": 7,
-                "from": "ryan",
-                "to": "vanda"
-            },
-            {
-                "passIndex": 8,
-                "from": "vanda",
-                "to": "inga"
-            },
-            {
-                "passIndex": 9,
-                "from": "inga",
-                "to": "james"
-            }
+            "radek",
+            "fred"
         ]
     },
     {
-        "date": "2017-03-02T00:00:00.000Z",
-        "formation": [
-            "vanda",
-            "ryan",
-            "emma",
-            "chris",
-            "greg",
-            "ed",
-            "florence",
+        "date": "2016-04-11T23:00:00.000Z",
+        "positions": [
             "ken",
-            "inga",
             "fred",
-            "alex"
+            "alex",
+            "chris",
+            "ryan",
+            "ed",
+            "radek",
+            "james",
+            "vanda",
+            "florence",
+            "greg"
         ],
-        "passes": [
-            {
-                "passIndex": 0,
-                "from": "greg",
-                "to": "ryan"
-            },
-            {
-                "passIndex": 1,
-                "from": "ryan",
-                "to": "florence"
-            },
-            {
-                "passIndex": 2,
-                "from": "florence",
-                "to": "inga"
-            },
-            {
-                "passIndex": 3,
-                "from": "inga",
-                "to": "vanda"
-            },
-            {
-                "passIndex": 4,
-                "from": "vanda",
-                "to": "chris"
-            },
-            {
-                "passIndex": 5,
-                "from": "chris",
-                "to": "ken"
-            },
-            {
-                "passIndex": 6,
-                "from": "ken",
-                "to": "alex"
-            },
-            {
-                "passIndex": 7,
-                "from": "alex",
-                "to": "emma"
-            },
-            {
-                "passIndex": 8,
-                "from": "emma",
-                "to": "ed"
-            },
-            {
-                "passIndex": 9,
-                "from": "ed",
-                "to": "fred"
-            }
+        "summaries": [
+            "alex",
+            "james",
+            "ryan",
+            "florence",
+            "fred",
+            "chris",
+            "ken",
+            "ed",
+            "radek",
+            "greg",
+            "vanda"
         ]
     }
- ]
+]
 ```
 
 ### Task List
 
-- [ ] Make the `passIndex` more meaningful.
-- [ ] Add some console feedback to the passing process.
-- [ ] Add error logging for imperfect data.
+- [x] Add some console feedback to the passing process.
+- [x] Add error logging for imperfect data.
