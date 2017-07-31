@@ -42,9 +42,9 @@ describe('standupParser', function() {
       return expect(result).to.eventually.be.a('string');
     });
 
-    // it('should eventually return an exact string', function() {
-    //   return expect(result).to.eventually.equal(weekAsString);
-    // });
+    it('should eventually return an exact string', function() {
+      return expect(result).to.eventually.equal(weekAsString);
+    });
 
   });
 
