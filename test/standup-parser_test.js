@@ -7,11 +7,15 @@ const chaiAsPromised  = require('chai-as-promised');
 
 chai.use(chaiAsPromised);
 
+const Logger   = require('../lib/logger.js');
+const logger = new Logger;
+
 const StandupParser   = require('../lib/standup-parser.js').StandupParser;
-const standupParser   = new StandupParser;
+const standupParser   = new StandupParser(logger);
 
 const filePath               = `${__dirname}/week.txt`;
 const weekAsString           = require('./mock-data').weekAsString;
+const dayStrings             = require('./mock-data').dayStrings;
 const formationAsString      = require('./mock-data').formationsAsStrings[0];
 const formationsAsStrings    = require('./mock-data').formationsAsStrings;
 const orderAsStrings         = require('./mock-data').ordersAsStrings[0];
@@ -21,6 +25,8 @@ const orderNamesArray        = require('./mock-data').orderNamesArray;
 const passesArray            = require('./mock-data').passesArray;
 const datesArray             = require('./mock-data').datesArray;
 const day                    = require('./mock-data').day;
+const dayObject              = require('./mock-data').dayObject;
+const weekObject             = require('./mock-data').weekObject;
 
 describe('standupParser', function() {
 
@@ -36,9 +42,9 @@ describe('standupParser', function() {
       return expect(result).to.eventually.be.a('string');
     });
 
-    it('should eventually return an exact string', function() {
-      return expect(result).to.eventually.equal(weekAsString);
-    });
+    // it('should eventually return an exact string', function() {
+    //   return expect(result).to.eventually.equal(weekAsString);
+    // });
 
   });
 
@@ -66,167 +72,48 @@ describe('standupParser', function() {
 
   });
 
-  describe('standupParser.getFormationStrings', function(){
+  describe('standupParser.getDate', function() {
 
-    const result = standupParser.getFormationStrings(weekAsString);
+    const result = standupParser.getDate(weekAsString);
 
-    it('should return an array', function(){
-      expect(result).to.be.an('array');
+    it('should return a date', function() {
+      expect(result).to.be.a('date');
     });
 
-    it('should return an array with number of elements equal to number of days', function(){
+  });
+
+  describe('standupParser.getDayStrings', function() {
+
+    const result = standupParser.getDayStrings(weekAsString);
+
+    it('should return an exact array', function() {
+      expect(result).to.be.an('array');
       expect(result.length).to.equal(5);
-    });
-
-    it('should return an array of strings which start with |', function(){
-      result.forEach(element => {
-        expect(element[0] === ':').to.be.true;
-      });
-    });
-  });
-
-  describe('standupParser.getFormations', function() {
-
-    const result = standupParser.getFormations(formationsAsStrings);
-
-    it('should return an array of arrays', function(){
-      result.forEach(element => {
-        expect(element).to.be.an('array');
-      });
-    });
-
-    it('should return specific names', function() {
-      result.forEach((element, index) => {
-        expect(element).to.deep.equal(namesArray[index]);
-      });
+      expect(result).to.deep.equal(dayStrings);
     });
 
   });
 
-  describe('standupParser.getOrderStrings', function(){
+  describe('standupParser.getPositions', function() {
 
-    const result = standupParser.getOrderStrings(weekAsString);
+    const result = standupParser.getPositions(dayStrings[0]);
 
-    it('should return an array', function(){
+    it('should return an exact array', function() {
       expect(result).to.be.an('array');
-    });
-
-    it('should return an array with number of elements equal to number of days', function(){
-      expect(result.length).to.equal(5);
-    });
-
-    it('should return an array of string which start with |', function(){
-      result.forEach(element => {
-        expect(element[0] === '|').to.be.true;
-      });
+      expect(result.length).to.equal(10);
+      expect(result).to.deep.equal(namesArray[0]);
     });
 
   });
 
-  describe('standupParser.makePass', function() {
+  describe('standupParser.getSummaries', function() {
 
-    const result = standupParser.makePass('ken', 'ed', 2);
+    const result = standupParser.getSummaries(dayStrings[0]);
 
-    it('should return an object', function() {
-      expect(result).to.be.an('object');
-    });
-
-    it('should return a pass object', function() {
-      expect(result).to.deep.equal({
-        passIndex: 2,
-        from: 'ken',
-        to: 'ed'
-      });
-    });
-
-  });
-
-  describe('standupParser.getPassesArray', function() {
-
-    const result = standupParser.getPassesArray(orderNamesArray);
-
-    it('should return an array', function(){
+    it('should return an exact array', function() {
       expect(result).to.be.an('array');
-    });
-
-    it('should return specific passes', function() {
-      result.forEach((element, index) => {
-        expect(element).to.deep.equal(passesArray[index]);
-      });
-    });
-
-  });
-
-  describe('standupParser.getPassesArrays', function() {
-
-    const result = standupParser.getPassesArrays(ordersAsStrings);
-
-    it('should return an array', function() {
-      expect(result).to.be.an('array');
-    });
-
-    it('should return an array of passes', function() {
-      expect(result[0]).to.deep.equal(passesArray);
-    });
-
-  });
-
-  describe('standupParser.getDates', function() {
-
-    const result = standupParser.getDates(weekAsString);
-
-    it('should return an array', function() {
-      expect(result).to.be.an('array');
-    });
-
-    it('should return an array with length equal to number of days', function() {
-      expect(result.length).to.equal(5);
-    });
-
-    it('should return an array of dates', function() {
-      expect(result[0]).to.be.a('date');
-    });
-
-  });
-
-  describe('standupParser.makeDay', function() {
-
-    const result = standupParser.makeDay('11/04/2016', namesArray[0], passesArray);
-
-    it('should return an object', function() {
-      expect(result).to.be.an('object');
-    });
-
-    it('return an array with elements with key value pairs', function() {
-      expect(result).to.have.property('date');
-      expect(result).to.have.property('formation');
-      expect(result).to.have.property('passes');
-    });
-
-    it('should return an object with .date = string', function(){
-      expect(result.date).to.be.a('string');
-    });
-
-    it('should return an object with .formation = array', function(){
-      expect(result.formation).to.be.a('array');
-    });
-
-    it('should an object with .passes = array', function(){
-      expect(result.passes).to.be.a('array');
-    });
-
-    it('should deep equal a specific object', function() {
-      expect(result).to.deep.equal(day);
-    });
-
-  });
-
-  describe('standupParser.makeJSON', function() {
-
-    const result = standupParser.makeJSON(datesArray, namesArray, passesArray);
-
-    it('should return an array', function() {
-      expect(result).to.be.an('array');
+      expect(result.length).to.equal(10);
+      expect(result).to.deep.equal(orderNamesArray);
     });
 
   });
@@ -240,6 +127,10 @@ describe('standupParser', function() {
     });
 
     it('should eventually return an array', function() {
+      expect(result).to.eventually.be.an('array');
+    });
+
+    it('should eventually return an exact array', function() {
       expect(result).to.eventually.be.an('array');
     });
 
