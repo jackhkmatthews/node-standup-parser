@@ -7,25 +7,16 @@ const chaiAsPromised  = require('chai-as-promised');
 
 chai.use(chaiAsPromised);
 
-const Logger   = require('../lib/logger.js');
-const logger = new Logger;
-
 const StandupParser   = require('../lib/standup-parser.js').StandupParser;
-const standupParser   = new StandupParser(logger);
+const standupParser   = new StandupParser();
 
 const filePath               = `${__dirname}/week.txt`;
+const filePathFaulty         = `${__dirname}/week-faulty.txt`;
 const weekAsString           = require('./mock-data').weekAsString;
 const dayStrings             = require('./mock-data').dayStrings;
 const formationAsString      = require('./mock-data').formationsAsStrings[0];
-const formationsAsStrings    = require('./mock-data').formationsAsStrings;
-const orderAsStrings         = require('./mock-data').ordersAsStrings[0];
-const ordersAsStrings        = require('./mock-data').ordersAsStrings;
 const namesArray             = require('./mock-data').namesArray;
 const orderNamesArray        = require('./mock-data').orderNamesArray;
-const passesArray            = require('./mock-data').passesArray;
-const datesArray             = require('./mock-data').datesArray;
-const day                    = require('./mock-data').day;
-const dayObject              = require('./mock-data').dayObject;
 const weekObject             = require('./mock-data').weekObject;
 
 describe('standupParser', function() {
@@ -118,9 +109,44 @@ describe('standupParser', function() {
 
   });
 
+  describe('standupParser.makeDayObject', function() {
+
+    const day = weekObject[0];
+    const result = standupParser.makeDayObject(day.date, day.positions, day.summaries);
+
+    it('should return an exact object', function() {
+      expect(result).to.be.an('object');
+      expect(result).to.deep.equal(day);
+    });
+
+  });
+
+  describe('standupParser.getDayObjectLog', function() {
+
+    it('should return a success log', function() {
+      const day = weekObject[0];
+      day.date = new Date(day.date);
+      const success = ['success', `${day.date.toDateString()} has complete data`];
+      const result = standupParser.getDayObjectLog(day);
+      expect(result).to.be.an('array');
+      expect(result).to.deep.equal(success);
+    });
+
+    it('should return an errorr log', function() {
+      const day = weekObject[0];
+      day.date = new Date(day.date);
+      day.positions.pop();
+      const error = ['error', `${day.date.toDateString()} has incomplete data and has not been parsed`];
+      const result = standupParser.getDayObjectLog(day);
+      expect(result).to.be.an('array');
+      expect(result).to.deep.equal(error);
+    });
+
+  });
+
   describe('standupParser.parse', function() {
 
-    const result = standupParser.parse(filePath);
+    const result = standupParser.parse(filePathFaulty);
 
     it('should return a promise', function() {
       expect(result).to.be.a('promise');

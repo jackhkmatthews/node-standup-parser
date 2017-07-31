@@ -8,7 +8,7 @@ ___
 
 A JavaScript class for parsing `standup.txt` files into JSON.
 
-This project was used as a learning tool for Behaviour Driven Development with Mocha and Chai (tests can be ran with `npm test`) and error handling.
+This project was used as a learning tool for Behaviour Driven Development with Mocha and Chai (tests can be ran with `npm test`), istanbul and logging.
 
 This class is used within other projects where SOON_ standup data is required. For example projects which generate SVGs (as seen above) based on SOON_'s daily standups.
 

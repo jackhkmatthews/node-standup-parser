@@ -12,23 +12,34 @@ describe('logger', function() {
 
     it('should return a string', function(){
       const logger = new Logger();
-      const message = logger.log('info', 'hello');
+      let message = logger.log('info', 'hello');
 
       expect(message).to.be.a('string');
       expect(message).to.equal('info: hello');
+
+      message = logger.log('info', {this: 'is', the: 'msg'});
+
+      expect(message).to.be.a('string');
+      expect(message).to.equal('info: {"this":"is","the":"msg"}');
     });
 
     it('should log correct type', function(){
       const logger = new Logger('success');
-      let message = logger.log('error', 'hello');
 
+      let message = logger.log('error', 'hello');
       expect(message.split(':')[0]).to.equal('error');
+
       message = logger.log('warn', 'hello');
       expect(message.split(':')[0]).to.equal('warn');
+
       message = logger.log('info', 'hello');
       expect(message.split(':')[0]).to.equal('info');
+      
       message = logger.log('success', 'hello');
       expect(message.split(':')[0]).to.equal('success');
+      
+      message = logger.log('unknown', 'hello');
+      expect(message.split(':')[0]).to.equal('unrecognised level');
     });
 
     it('should only log the correct levels', function() {
