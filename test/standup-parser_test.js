@@ -148,6 +148,8 @@ describe('standupParser', function() {
 
     const result = standupParser.parse(filePathFaulty);
 
+    result.then(result => console.log(result));
+
     it('should return a promise', function() {
       expect(result).to.be.a('promise');
     });
