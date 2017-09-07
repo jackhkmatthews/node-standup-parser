@@ -10,7 +10,6 @@ chai.use(chaiAsPromised);
 const StandupParser   = require('../lib/standup-parser.js').StandupParser;
 const standupParser   = new StandupParser();
 
-const folderPath             = `${__dirname}/dummy`;
 const filePath               = `${__dirname}/dummy/week.txt`;
 const weekAsString           = require('./mock-data').weekAsString;
 const dayStrings             = require('./mock-data').dayStrings;
@@ -20,28 +19,6 @@ const orderNamesArray        = require('./mock-data').orderNamesArray;
 const weekObject             = require('./mock-data').weekObject;
 
 describe('standupParser', function() {
-
-  describe('standupParser.getFileName', function() {
-
-    const result = standupParser.getFileName(folderPath);
-
-    it('should return a file name', function(){
-      expect(result).to.be.a('string');
-      expect(result).to.equal('week-faulty');
-    });
-
-  });
-
-  describe('standupParser.getFilePath', function() {
-
-    const result = standupParser.getFilePath(folderPath);
-
-    it('should return a folder path', function(){
-      expect(result).to.be.a('string');
-      expect(result).to.equal(`${folderPath}/week-faulty.txt`);
-    });
-
-  });
 
   describe('standupParser.getFile', function() {
 
@@ -168,7 +145,7 @@ describe('standupParser', function() {
 
   describe('standupParser.parse', function() {
 
-    const result = standupParser.parse(folderPath);
+    const result = standupParser.parse(filePath);
 
     it('should return a promise', function() {
       expect(result).to.be.a('promise');
