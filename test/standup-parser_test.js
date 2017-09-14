@@ -66,8 +66,8 @@ describe('standupParser', function() {
 
     const result = standupParser.getDate(weekAsString);
 
-    it('should return a date', function() {
-      expect(result).to.be.a('date');
+    it('should return a string', function() {
+      expect(result).to.be.a('string');
     });
 
   });
@@ -125,7 +125,7 @@ describe('standupParser', function() {
     it('should return a success log', function() {
       const day = weekObject[0];
       day.date = new Date(day.date);
-      const success = ['success', `${day.date.toDateString()} has complete data`];
+      const success = ['success', `${day.date} has complete data`];
       const result = standupParser.getDayObjectLog(day);
       expect(result).to.be.an('array');
       expect(result).to.deep.equal(success);
@@ -135,7 +135,7 @@ describe('standupParser', function() {
       const day = weekObject[0];
       day.date = new Date(day.date);
       day.positions.pop();
-      const error = ['error', `${day.date.toDateString()} has incomplete data and has not been parsed`];
+      const error = ['error', `${day.date} has incomplete data and has not been parsed`];
       const result = standupParser.getDayObjectLog(day);
       expect(result).to.be.an('array');
       expect(result).to.deep.equal(error);
